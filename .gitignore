@@ -1,7 +1,8 @@
-# Virtual environments
+# Virtual environments (never commit — huge and machine-specific)
 .venv/
 venv/
 env/
+ENV/
 
 # Python
 __pycache__/
@@ -9,6 +10,12 @@ __pycache__/
 *$py.class
 .Python
 *.so
+*.egg-info/
+.eggs/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
 
 # Jupyter
 .ipynb_checkpoints/

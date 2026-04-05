@@ -106,7 +106,7 @@ BTC_Hybrid_Trading_System/
 ### Prerequisites
 
 ```
-Python 3.10+
+Python 3.9+  (see pinned versions in requirements.txt)
 ```
 
 ### 1. Install Dependencies
@@ -136,14 +136,26 @@ export NEWSAPI_KEY="your_api_key_here"
 
 ### 3. Run the Pipeline
 
+By default, `all` / `full` **skip hyperparameter tuning (step3b)** for a faster run. Backtests then use **step 3** models (or existing step3b pickles if you already ran tuning). Add **`--tune`** to run step3b as well.
+
 **Full pipeline (includes data ingestion):**
 ```bash
 python run_pipeline.py full
 ```
 
+**Same, with hyperparameter tuning (slow):**
+```bash
+python run_pipeline.py full --tune
+```
+
 **Skip data ingestion (if you already have `step1_merged_data.csv`):**
 ```bash
 python run_pipeline.py all
+```
+
+**With tuning:**
+```bash
+python run_pipeline.py all --tune
 ```
 
 **Run individual steps:**
@@ -163,6 +175,18 @@ python run_pipeline.py backtest    # Backtesting
 ```bash
 python step4_time_aligned_evaluation.py
 ```
+
+### 5. Repo hygiene (optional)
+
+- **Do not commit** `.venv/` — use `requirements.txt` and a local venv.
+- If `.venv` was ever committed, install [git-filter-repo](https://github.com/newren/git-filter-repo) and **rewrite history** (coordinate with anyone who cloned the repo):
+
+```bash
+git filter-repo --path .venv --invert-paths --force
+git push origin main --force
+```
+
+`--force` overwrites the remote branch; teammates must re-clone or hard-reset.
 
 ---
 
