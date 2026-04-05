@@ -17,7 +17,8 @@ build/
 .pytest_cache/
 .mypy_cache/
 
-# Jupyter
+# Jupyter (any depth, e.g. outputs/.ipynb_checkpoints/)
+**/.ipynb_checkpoints/
 .ipynb_checkpoints/
 
 # Secrets / local env
